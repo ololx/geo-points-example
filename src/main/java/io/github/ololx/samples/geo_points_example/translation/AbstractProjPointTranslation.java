@@ -1,6 +1,5 @@
 package io.github.ololx.samples.geo_points_example.translation;
 
-import io.github.ololx.moonshine.tuple.Couple;
 import io.github.ololx.moonshine.tuple.Tuple;
 import org.locationtech.proj4j.CRSFactory;
 import org.locationtech.proj4j.CoordinateReferenceSystem;
@@ -14,7 +13,7 @@ import java.util.Objects;
  *     project geo-points-example
  *     created 11/10/2023 11:42 am
  */
-public abstract class AbstractXYPointTranslation<T extends Tuple> implements PointTranslation<T> {
+public abstract class AbstractProjPointTranslation<T extends Tuple> implements PointTranslation<T> {
 
     protected static final CRSFactory crsFactory = new CRSFactory();
     
@@ -26,7 +25,7 @@ public abstract class AbstractXYPointTranslation<T extends Tuple> implements Poi
 
     protected final CoordinateTransform transform;
 
-    AbstractXYPointTranslation(String defaultProj4jText, String convertibleProj4jText) {
+    AbstractProjPointTranslation(String defaultProj4jText, String convertibleProj4jText) {
         this.fromCrs = crsFactory.createFromParameters("default-crs", Objects.requireNonNull(defaultProj4jText));
         this.toCrs = crsFactory.createFromParameters("convertible-crs", Objects.requireNonNull(convertibleProj4jText));
         this.transform = ctFactory.createTransform(fromCrs, toCrs);

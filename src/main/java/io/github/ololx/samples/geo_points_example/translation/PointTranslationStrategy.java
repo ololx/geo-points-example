@@ -14,24 +14,25 @@ import java.util.Objects;
  */
 public class PointTranslationStrategy {
 
-    private static final Map<String, XYPointTranslation> transforms = new HashMap<>();
+    private static final Map<String, String> proj4jText = Map.of(
+        "WGS-84", "+proj=longlat +ellps=WGS84 +datum=WGS84 +no_defs",
+        "МСК-16 Зона 1", "+proj=tmerc +lat_0=0 +lon_0=49.03333333333 +k=1 +x_0=1300000 +y_0=-5709414.70 +ellps=krass +towgs84=23.57,-140.95,-79.8,0,0.35,0.79,-0.22 +units=m +no_defs",
+        "МСК-16 Зона 2", "+proj=tmerc +lat_0=0 +lon_0=52.03333333333 +k=1 +x_0=2300000 +y_0=-5709414.70 +ellps=krass +towgs84=23.57,-140.95,-79.8,0,0.35,0.79,-0.22 +units=m +no_defs",
+        "МСК-16 Зона 3", "+proj=tmerc +lat_0=0 +lon_0=55.03333333333 +k=1 +x_0=3300000 +y_0=-5709414.70 +ellps=krass +towgs84=23.57,-140.95,-79.8,0,0.35,0.79,-0.22 +units=m +no_defs",
+        "МСК-23 Зона 1", "+proj=tmerc +lat_0=0 +lon_0=37.98333333333 +k=1 +x_0=1300000 +y_0=-4511057.628 +ellps=krass +towgs84=23.57,-140.95,-79.8,0,0.35,0.79,-0.22 +units=m +no_defs",
+        "МСК-23 Зона 2", "+proj=tmerc +lat_0=0 +lon_0=40.98333333333 +k=1 +x_0=2300000 +y_0=-4511057.628 +ellps=krass +towgs84=23.57,-140.95,-79.8,0,0.35,0.79,-0.22 +units=m +no_defs"
+    );
+
+    private static final Map<String, XYPointTranslation<Tuple2<Double, Double>>> transforms = new HashMap<>();
 
     static {
-        transforms.put(
-            "WGS-84/МСК-23-1",
-            new XYPointTranslation(
-                "+proj=longlat +ellps=WGS84 +datum=WGS84 +no_defs",
-                "+proj=tmerc +lat_0=0 +lon_0=37.98333333333 +k=1 +x_0=1300000 +y_0=-4511057.628 +ellps=krass +towgs84=23.57,-140.95,-79.8,0,0.35,0.79,-0.22 +units=m +no_defs"
-            )
-        );
-        transforms.put(
-            "МСК-23-1/WGS-84",
-            new XYPointTranslation(
-                "+proj=tmerc +lat_0=0 +lon_0=37.98333333333 +k=1 +x_0=1300000 +y_0=-4511057.628 +ellps=krass +towgs84=23.57,-140.95,-79.8,0,0.35,0.79,-0.22 +units=m +no_defs",
-                "+proj=longlat +ellps=WGS84 +datum=WGS84 +no_defs"
-            )
-        );
+        proj4jText.forEach((fromName, fromValue) -> {
+            proj4jText.forEach((toName, toValue) -> {
+                transforms.put(fromName + "/" + toName, new XYProjPointTranslation(fromValue, toValue));
+            });
+        });
     }
+
     public Tuple2<Double, Double> translate(Couple<Double, Double> point, String crs) {
         return Objects.requireNonNull(transforms.get(crs)).apply(point);
     }

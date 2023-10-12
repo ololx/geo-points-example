@@ -1,6 +1,5 @@
 package io.github.ololx.samples.geo_points_example.translation;
 
-import io.github.ololx.moonshine.tuple.Tuple;
 import io.github.ololx.moonshine.tuple.Tuple2;
 
 /**

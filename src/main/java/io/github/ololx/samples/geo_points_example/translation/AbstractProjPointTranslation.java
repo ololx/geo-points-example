@@ -5,8 +5,7 @@ import org.locationtech.proj4j.CRSFactory;
 import org.locationtech.proj4j.CoordinateReferenceSystem;
 import org.locationtech.proj4j.CoordinateTransform;
 import org.locationtech.proj4j.CoordinateTransformFactory;
-
-import java.util.Objects;
+import org.springframework.lang.NonNull;
 
 /**
  * @author Alexander A. Kropotin
@@ -16,7 +15,7 @@ import java.util.Objects;
 public abstract class AbstractProjPointTranslation<T extends Tuple> implements PointTranslation<T> {
 
     protected static final CRSFactory crsFactory = new CRSFactory();
-    
+
     protected static final CoordinateTransformFactory ctFactory = new CoordinateTransformFactory();
 
     protected final CoordinateReferenceSystem fromCrs;
@@ -25,9 +24,9 @@ public abstract class AbstractProjPointTranslation<T extends Tuple> implements P
 
     protected final CoordinateTransform transform;
 
-    AbstractProjPointTranslation(String defaultProj4jText, String convertibleProj4jText) {
-        this.fromCrs = crsFactory.createFromParameters("default-crs", Objects.requireNonNull(defaultProj4jText));
-        this.toCrs = crsFactory.createFromParameters("convertible-crs", Objects.requireNonNull(convertibleProj4jText));
+    AbstractProjPointTranslation(@NonNull String fromProj4jText, @NonNull String toProj4jText) {
+        this.fromCrs = crsFactory.createFromParameters("from-crs", fromProj4jText);
+        this.toCrs = crsFactory.createFromParameters("to-crs", toProj4jText);
         this.transform = ctFactory.createTransform(fromCrs, toCrs);
     }
 }

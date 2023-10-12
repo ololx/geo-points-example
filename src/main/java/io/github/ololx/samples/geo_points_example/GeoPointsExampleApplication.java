@@ -6,7 +6,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 @SpringBootApplication
 public class GeoPointsExampleApplication {
 
-	public static void main(String[] args) {
-		SpringApplication.run(GeoPointsExampleApplication.class, args);
-	}
+    public static void main(String[] args) {
+        SpringApplication.run(GeoPointsExampleApplication.class, args);
+    }
 }

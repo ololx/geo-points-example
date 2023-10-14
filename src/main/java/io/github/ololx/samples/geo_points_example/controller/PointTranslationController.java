@@ -34,7 +34,7 @@ public class PointTranslationController {
             fromCrs,
             toCrs,
             Triple.of(x, y, z),
-            pointTranslationStrategy.translate(Couple.of(x, y), fromCrs, toCrs)
+            pointTranslationStrategy.transform(Couple.of(x, y), fromCrs, toCrs)
                 .convert(xy -> Triple.of(xy.get(0), xy.get(1), z))
         );
         responseHistory.add(response);

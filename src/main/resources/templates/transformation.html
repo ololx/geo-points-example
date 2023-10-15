@@ -6,8 +6,7 @@
 </head>
 <body>
 <h1>Transform points crs:</h1>
-<form action="#" th:action="@{/transformation}" th:object="${pointTransformationRequest}"
-      method="post">
+<form action="#" th:action="@{/transformation}" th:object="${pointTransformationModel}" method="post">
     <table>
         <tr>
             <th>from</th>
@@ -44,19 +43,23 @@
     <div id="map" style="width: 600px; height: 400px;"></div>
     <script>
         document.addEventListener("DOMContentLoaded", function () {
-            var map = L.map('map').setView([0, 0], 13);
+            var newX = parseFloat([[${pointTransformationModel.newX}]]);
+            var newY = parseFloat([[${pointTransformationModel.newY}]]);
+
+            var map = L.map('map').setView([newY, newX], 3);
 
             L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
                 attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
             }).addTo(map);
 
-            var newX = parseFloat([[${pointTransformationRequest.newX}]]);
-            var newY = parseFloat([[${pointTransformationRequest.newY}]]);
+            var newX = parseFloat([[${pointTransformationModel.newX}]]);
+            var newY = parseFloat([[${pointTransformationModel.newY}]]);
 
             L.marker([newY, newX]).addTo(map)
                 .bindPopup('Transformed point here')
                 .openPopup();
         });
+
     </script>
 </div>
 </body>

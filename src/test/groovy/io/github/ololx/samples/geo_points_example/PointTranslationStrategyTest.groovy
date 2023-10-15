@@ -7,7 +7,7 @@ package io.github.ololx.samples.geo_points_example
 
 
 import io.github.ololx.moonshine.tuple.Couple
-import io.github.ololx.samples.geo_points_example.translation.PointTranslationStrategy
+import io.github.ololx.samples.geo_points_example.translation.PointTransformationStrategy
 import spock.lang.Shared
 import spock.lang.Specification
 import spock.lang.Unroll
@@ -15,7 +15,7 @@ import spock.lang.Unroll
 class PointTranslationStrategyTest extends Specification {
 
     @Shared
-    PointTranslationStrategy translation = new PointTranslationStrategy(
+    PointTransformationStrategy translation = new PointTransformationStrategy(
         [
             "МГС-84:+proj=longlat +ellps=WGS84 +datum=WGS84 +no_defs",
             "WGS-84:+proj=longlat +ellps=WGS84 +datum=WGS84 +no_defs",

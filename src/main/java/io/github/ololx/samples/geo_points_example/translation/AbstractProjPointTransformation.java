@@ -12,7 +12,7 @@ import org.springframework.lang.NonNull;
  *     project geo-points-example
  *     created 11/10/2023 11:42 am
  */
-public abstract class AbstractProjPointTranslation<T extends Tuple> implements PointTranslation<T> {
+public abstract class AbstractProjPointTransformation<T extends Tuple> implements PointTransfromation<T> {
 
     protected static final CRSFactory crsFactory = new CRSFactory();
 
@@ -24,7 +24,7 @@ public abstract class AbstractProjPointTranslation<T extends Tuple> implements P
 
     protected final CoordinateTransform transform;
 
-    AbstractProjPointTranslation(@NonNull String fromProj4jText, @NonNull String toProj4jText) {
+    AbstractProjPointTransformation(@NonNull String fromProj4jText, @NonNull String toProj4jText) {
         this.fromCrs = crsFactory.createFromParameters("from-crs", fromProj4jText);
         this.toCrs = crsFactory.createFromParameters("to-crs", toProj4jText);
         this.transform = ctFactory.createTransform(fromCrs, toCrs);

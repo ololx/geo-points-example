@@ -4,9 +4,7 @@ import io.github.ololx.moonshine.stopwatch.SimpleStopwatch;
 import io.github.ololx.moonshine.tuple.Couple;
 import io.github.ololx.moonshine.tuple.Tuple2;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.beans.factory.annotation.Value;
 import org.springframework.lang.NonNull;
-import org.springframework.stereotype.Component;
 
 import java.util.HashMap;
 import java.util.List;
@@ -19,14 +17,13 @@ import java.util.function.BiFunction;
  *     created 11/10/2023 11:42 am
  */
 @Slf4j
-@Component
-public class PointTranslationStrategy {
+public class PointTransformationStrategy {
 
     private static final BiFunction<String, String, String> transformNameFactory = (from, to) -> from + "/" + to;
 
-    private final Map<String, XYPointTranslation<Tuple2<Double, Double>>> transforms = new HashMap<>();
+    private final Map<String, XYPointTransformation<Tuple2<Double, Double>>> transforms = new HashMap<>();
 
-    public PointTranslationStrategy(@NonNull @Value("${transformation.crsProjections}") List<String> crsProjectionsProj4jText) {
+    public PointTransformationStrategy(@NonNull List<String> crsProjectionsProj4jText) {
         Map<String, String> crsProjectionsProj4jTextMap = new HashMap<>();
         crsProjectionsProj4jText.forEach(proj4jText -> {
             var proj4jTextArray = proj4jText.split(":");
@@ -37,7 +34,7 @@ public class PointTranslationStrategy {
             crsProjectionsProj4jTextMap.forEach((nameOther, valueOther) -> {
                 this.transforms.put(
                     transformNameFactory.apply(name, nameOther),
-                    new XYProjPointTranslation(value, valueOther)
+                    new XYProjPointTransformation(value, valueOther)
                 );
             });
         });

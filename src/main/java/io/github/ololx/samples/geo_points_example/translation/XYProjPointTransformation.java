@@ -9,9 +9,9 @@ import org.locationtech.proj4j.ProjCoordinate;
  *     project geo-points-example
  *     created 11/10/2023 11:42 am
  */
-public class XYProjPointTranslation extends AbstractProjPointTranslation<Tuple2<Double, Double>> implements XYPointTranslation<Tuple2<Double, Double>> {
+public class XYProjPointTransformation extends AbstractProjPointTransformation<Tuple2<Double, Double>> implements XYPointTransformation<Tuple2<Double, Double>> {
 
-    public XYProjPointTranslation(String fromProj4jText, String toProj4jText) {
+    public XYProjPointTransformation(String fromProj4jText, String toProj4jText) {
         super(fromProj4jText, toProj4jText);
     }
 

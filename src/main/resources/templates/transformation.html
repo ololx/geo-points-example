@@ -5,6 +5,7 @@
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
 </head>
 <body>
+<div th:if="${errorMessage}" class="error" th:text="${errorMessage}"></div>
 <h1>Transform points crs:</h1>
 <form action="#" th:action="@{/transformation}" th:object="${pointTransformationModel}" method="post">
     <table>

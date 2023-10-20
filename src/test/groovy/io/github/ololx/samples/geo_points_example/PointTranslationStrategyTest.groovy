@@ -7,7 +7,7 @@ package io.github.ololx.samples.geo_points_example
 
 
 import io.github.ololx.moonshine.tuple.Couple
-import io.github.ololx.samples.geo_points_example.translation.PointTransformationStrategy
+import io.github.ololx.samples.geo_points_example.transformation.PointTransformationStrategy
 import spock.lang.Shared
 import spock.lang.Specification
 import spock.lang.Unroll

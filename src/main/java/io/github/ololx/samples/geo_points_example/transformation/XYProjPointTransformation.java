@@ -1,4 +1,4 @@
-package io.github.ololx.samples.geo_points_example.translation;
+package io.github.ololx.samples.geo_points_example.transformation;
 
 import io.github.ololx.moonshine.tuple.Couple;
 import io.github.ololx.moonshine.tuple.Tuple2;

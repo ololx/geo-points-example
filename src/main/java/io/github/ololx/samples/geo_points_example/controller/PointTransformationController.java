@@ -2,9 +2,8 @@ package io.github.ololx.samples.geo_points_example.controller;
 
 import io.github.ololx.moonshine.tuple.Couple;
 import io.github.ololx.samples.geo_points_example.model.PointTransformationFromModel;
-import io.github.ololx.samples.geo_points_example.translation.PointTransformationStrategy;
+import io.github.ololx.samples.geo_points_example.transformation.PointTransformationStrategy;
 import lombok.RequiredArgsConstructor;
-import org.apache.tomcat.util.threads.VirtualThreadExecutor;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -12,9 +11,6 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 
 import java.util.concurrent.CompletableFuture;
-import java.util.concurrent.Executor;
-import java.util.concurrent.ThreadFactory;
-import java.util.concurrent.ThreadPoolExecutor;
 
 /**
  * @author Alexander A. Kropotin

@@ -1,6 +1,6 @@
 package io.github.ololx.samples.geo_points_example.configuration;
 
-import io.github.ololx.samples.geo_points_example.translation.PointTransformationStrategy;
+import io.github.ololx.samples.geo_points_example.transformation.PointTransformationStrategy;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;

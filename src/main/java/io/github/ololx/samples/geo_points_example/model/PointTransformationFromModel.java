@@ -14,19 +14,15 @@ public class PointTransformationFromModel {
 
     double y;
 
-    double z;
-
     double newX;
 
     double newY;
-
-    double newZ;
 
     String fromCrs;
 
     String toCrs;
 
     public static PointTransformationFromModel empty() {
-        return new PointTransformationFromModel(0, 0, 0, 0, 0, 0, "МГС-84", "WGS-84");
+        return new PointTransformationFromModel(0, 0, 0, 0, "МГС-84", "WGS-84");
     }
 }
